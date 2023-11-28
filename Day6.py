@@ -1,0 +1,1 @@
+with open("Input/Day 6.txt", "r") as f: inputString = f.read()
