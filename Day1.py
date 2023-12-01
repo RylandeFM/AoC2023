@@ -2,6 +2,14 @@ import re
 
 with open("Input/Day 1.txt", "r") as f: inputString = f.read().splitlines()
 
+replaces = {"one":'1',"two":'2',"three":'3',"four":'4',"five":'5',"six":'6',"seven":'7',"eight":'8',"nine":'9'}
+
+'''
+def partOne():
+    numbers = [[y for y in x if y.isnumeric()] for x in inputString]
+    print(sum([int(x[0] + x[-1]) for x in numbers]))
+''' 
+   
 def partOne():
     print(sum([int(x[0] + x[-1]) for x in [re.findall("[0-9]",line) for line in inputString]]))
 
@@ -29,11 +37,16 @@ def partTwo():
 '''
 
 def partTwo():
-    sum, replaces = 0, {"one":'1',"two":'2',"three":'3',"four":'4',"five":'5',"six":'6',"seven":'7',"eight":'8',"nine":'9'}
+    sum = 0
     for line in inputString:
         numbers = re.findall('(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))',line)
         sum += int((numbers[0] if numbers[0].isnumeric() else replaces[numbers[0]]) + (numbers[-1] if numbers[-1].isnumeric() else replaces[numbers[-1]]))
     print(sum)
+    
+def findCalibration(pattern):
+    print(sum([int((x[0] if x[0].isnumeric() else replaces[x[0]]) + (x[-1] if x[-1].isnumeric() else replaces[x[-1]])) for x in [re.findall(pattern,line) for line in inputString]]))
         
-partOne()
-partTwo()
+#partOne()
+#partTwo()
+findCalibration("[0-9]")
+findCalibration("(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))")
