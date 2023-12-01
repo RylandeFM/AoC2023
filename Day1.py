@@ -3,8 +3,7 @@ import re
 with open("Input/Day 1.txt", "r") as f: inputString = f.read().splitlines()
 
 def partOne():
-    numbers = [[y for y in x if y.isnumeric()] for x in inputString]
-    print(sum([int(x[0] + x[-1]) for x in numbers]))
+    print(sum([int(x[0] + x[-1]) for x in [re.findall("[0-9]",line) for line in inputString]]))
 
 ''' Initial attempt
 def partTwo():
