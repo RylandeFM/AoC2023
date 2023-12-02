@@ -18,5 +18,4 @@ def playGame():
     print(sum)
     print(powerSum)
                 
-        
 playGame()
