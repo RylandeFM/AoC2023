@@ -3,8 +3,8 @@ with open("Input/Day 4.txt", "r") as f: inputString = f.read().splitlines()
 cards = {}
 
 for i, line in enumerate(inputString):
-    numbers = line.split(": ")[1]
-    cards[i + 1] = {"winners": [n for n in numbers.split(" | ")[0].split(" ") if n], "numbers": [n for n in numbers.split(" | ")[1].split(" ") if n]}
+    numbers = line.split(": ")[1].split(" | ")
+    cards[i + 1] = {"winners": [n for n in numbers[0].split(" ") if n], "numbers": [n for n in numbers[1].split(" ") if n]}
     
 def checkScratchers():
     amounts = {card: 1 for card in cards.keys()}
