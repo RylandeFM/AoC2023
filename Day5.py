@@ -1,3 +1,5 @@
+import time
+
 with open("Input/Day 5.txt", "r") as f: inputString = f.read()
 
 #parse input
@@ -15,7 +17,8 @@ for line in inputLines:
         maps[mapIndex].append([int(x) for x in line.split(" ")])
 maps[mapIndex] = sorted(maps[mapIndex], key=lambda x: x[1])
 for m in maps[mapIndex]: diffMap[mapIndex].append([m[1],m[1]+m[2]-1,m[0]-m[1]]) #filling the last diffmap
-        
+
+'''        
 def partOne():
     lowestLoc, currentSearch = -1, 0
     for seed in seeds:
@@ -27,7 +30,8 @@ def partOne():
                     break
         lowestLoc = currentSearch if lowestLoc == -1 else min(lowestLoc, currentSearch)
     print(lowestLoc)
-         
+'''
+
 def findLowestLocation(seeds):
     currentRanges = seeds
     for m in diffMap.values():
@@ -71,6 +75,5 @@ def findLowestLocation(seeds):
         currentRanges = newRanges
     print(currentRanges[0][0])
 
-#partOne()
 findLowestLocation(sorted([[seeds[i], seeds[i]] for i in range(0, len(seeds))], key=lambda x: x[0]))
 findLowestLocation(sorted([[seeds[i], seeds[i]+seeds[i+1]-1] for i in range(0, len(seeds), 2)], key=lambda x: x[0]))
