@@ -34,42 +34,54 @@ def findLowestLocation(seeds):
     currentRanges = seeds
     for m in diffMap.values():
         newRanges, diffIndex = [], 0
-        #determine new ranges
         for r in currentRanges:
-            #range to right of map, so we can ignore this map since we're going through a sorted list and the start is past the end of the map
+            #range to right of map, so we can ignore this map since we're going through sorted lists (map and ranges) and the start is past the end of the map
             while diffIndex < len(m)-1 and r[0] > m[diffIndex][1]: diffIndex += 1
-            if diffIndex == len(m):
+            
+            #previous range was already past the maps so we can freely add next ranges unchanged
+            if diffIndex == len(m): 
                 newRanges.append([r[0], r[1]])
                 break
-            if r[0] < m[diffIndex][0]: #there is a part to the left of the range that is not captured by a map
-                if r[1] < m[diffIndex][0]:
-                    newRanges.append([r[0], r[1]]) #range is fully to the left of the map so we add it unchanged an move to the next range
+            
+            #there is a part to the left of the range that is not captured by a map
+            if r[0] < m[diffIndex][0]: 
+                #range is fully to the left of the map so we add it unchanged an move to the next range
+                if r[1] < m[diffIndex][0]: 
+                    newRanges.append([r[0], r[1]]) 
                     break
                 else:
-                    newRanges.append([r[0], m[diffIndex][0]-1]) #add new range, stays as is because it's not captured by a map
-                    r[0] = m[diffIndex][0]
-            while diffIndex < len(m) and r[1] > m[diffIndex][1] and r[0] <= m[diffIndex][1]: #range in window as the end of the range is higher than the end of the map but left is higher or equal to start of map
-                if r[0] < m[diffIndex][0]: #range is larger than multiple maps, but the maps are not adjacent so we add the part between the maps unchanged
+                    #add new range, stays as is because it's not captured by a map
+                    newRanges.append([r[0], m[diffIndex][0]-1]) 
+                    #change the start for the part that the map captures
+                    r[0] = m[diffIndex][0] 
+                    
+            #map is contained in the range as the end of the range is higher or equal than the end of the map but left is lower or equal to end of map
+            while diffIndex < len(m) and r[1] >= m[diffIndex][1] and r[0] <= m[diffIndex][1]: 
+                #range is larger than multiple maps, but the maps are not adjacent so we add the part between the maps unchanged
+                if r[0] < m[diffIndex][0]: 
                     newRanges.append([r[0], m[diffIndex][0]-1])
                     r[0] = m[diffIndex][0]
-                newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]])
+                #add the range to new with modifications
+                newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]]) 
+                #set the start to just outside the current map for the next iteration
                 r[0] = m[diffIndex][1] + 1
                 diffIndex += 1
-            if diffIndex == len(m) or r[1] < m[diffIndex][0]: #we've reached the end of the diffmaps or the remaining range is wholly before the next map
+                
+            #we've reached the end of the diffmaps or the remaining range is wholly before the next map so we can add unchanged
+            if diffIndex == len(m) or r[1] < m[diffIndex][0]: 
                 newRanges.append([r[0], r[1]])
+            #the last bit of the range interacts with the map, either wholly encompassed or to the right
             else:
-                if r[0] > m[diffIndex][1]:
-                    newRanges.append([r[0], r[1]])
+                #fully within the map
+                if r[1] <= m[diffIndex][1]:
+                    newRanges.append([r[0]+m[diffIndex][2], r[1]+m[diffIndex][2]])
+                #right side sticking out of the map
                 else:
-                    if r[1] <= m[diffIndex][1]:
-                        newRanges.append([r[0]+m[diffIndex][2], r[1]+m[diffIndex][2]])
-                    else:
-                        newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]])
-                        newRanges.append([m[diffIndex][1]+1, r[1]])
-            
-        #sort new ranges
+                    newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]])
+                    newRanges.append([m[diffIndex][1]+1, r[1]])
+           
+        #sort the new ranges as we expect everything to be sorted
         newRanges = sorted(newRanges, key=lambda x: x[0])
-        #set new ranges as current
         currentRanges = newRanges
     print(currentRanges[0][0])
 
