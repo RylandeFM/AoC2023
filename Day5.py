@@ -1,5 +1,3 @@
-import time
-
 with open("Input/Day 5.txt", "r") as f: inputString = f.read()
 
 #parse input
