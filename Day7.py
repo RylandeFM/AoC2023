@@ -13,12 +13,12 @@ def camelCards(jokersApply, translationTable):
         occurrences = Counter(newCard)
         if '0' in occurrences.keys() and jokersApply: # there is a Joker so we need to change the profile and Joker rules apply
             noJokers, toAdd = [], occurrences['0']
-            for key in occurrences.keys():
-                if key != '0': noJokers.append(occurrences[key])
-            noJokers = sorted(noJokers, reverse=True)
-            if len(noJokers) == 0: # hand with all Jokers 
+            if occurrences['0'] == 5: 
                 cardProfile = "5"
             else:
+                for key in occurrences.keys():
+                    if key != '0': noJokers.append(occurrences[key])
+                noJokers = sorted(noJokers, reverse=True)
                 noJokers[0] += toAdd
                 cardProfile = "".join(map(str, noJokers))
         else:
