@@ -10,9 +10,9 @@ def huntAnimal():
     loopNodes = set()
     
     #find a relevant start node in the cardinal directions
-    if (start[0] - 1, start[1]) in interestingPoints.keys() and interestingPoints[(start[0] - 1, start[1])] in ["-", "F", "-"]: 
+    if (start[0] - 1, start[1]) in interestingPoints.keys() and interestingPoints[(start[0] - 1, start[1])] in ["-", "F", "L"]: 
         node = (start[0] - 1, start[1], start[0], start[1])
-    elif (start[0] + 1,start[1]) in interestingPoints.keys() and interestingPoints[(start[0] + 1, start[1])] in ["L", "J", "7"]: 
+    elif (start[0] + 1,start[1]) in interestingPoints.keys() and interestingPoints[(start[0] + 1, start[1])] in ["-", "J", "7"]: 
         node = (start[0] + 1, start[1], start[0], start[1])
     elif (start[0], start[1] - 1) in interestingPoints.keys() and interestingPoints[(start[0], start[1] - 1)] in ["|", "F", "7"]: 
         node = (start[0], start[1] - 1, start[0], start[1])
