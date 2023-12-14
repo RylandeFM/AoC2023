@@ -18,7 +18,7 @@ def findMirrors(targetDifferences):
     print((horizontal * 100) + vertical)
     '''
     print((sum([getMirrorRow([line for line in pattern], targetDifferences) for pattern in patterns]) * 100) + 
-          sum([getMirrorRow([line for line in zip(*pattern)], targetDifferences) for pattern in patterns]))
+          sum([getMirrorRow([line for line in zip(*pattern)], targetDifferences) for pattern in patterns])) #zip(*pattern) rotates the 2D grid 90 degrees
         
 findMirrors(0)
 findMirrors(1)
