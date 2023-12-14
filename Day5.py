@@ -8,13 +8,13 @@ inputLines = inputLines[2:]
 for line in inputLines:
     if not line[0].isnumeric(): 
         maps[mapIndex] = sorted(maps[mapIndex], key=lambda x: x[1]) #sort maps by source number
-        for m in maps[mapIndex]: diffMap[mapIndex].append([m[1],m[1]+m[2]-1,m[0]-m[1]]) #diffmap = start, end, modification
+        for m in maps[mapIndex]: diffMap[mapIndex].append([m[1], m[1] + m[2] - 1, m[0] - m[1]]) #diffmap = start, end, modification
         mapIndex += 1
         maps[mapIndex], diffMap[mapIndex] = [], []
     else:
         maps[mapIndex].append([int(x) for x in line.split(" ")])
 maps[mapIndex] = sorted(maps[mapIndex], key=lambda x: x[1])
-for m in maps[mapIndex]: diffMap[mapIndex].append([m[1],m[1]+m[2]-1,m[0]-m[1]]) #filling the last diffmap
+for m in maps[mapIndex]: diffMap[mapIndex].append([m[1], m[1] + m[2] - 1, m[0] - m[1]]) #filling the last diffmap
 
 '''        
 def partOne():
@@ -36,7 +36,7 @@ def findLowestLocation(seeds):
         newRanges, diffIndex = [], 0
         for r in currentRanges:
             #range to right of map, so we can ignore this map since we're going through sorted lists (map and ranges) and the start is past the end of the map
-            while diffIndex < len(m)-1 and r[0] > m[diffIndex][1]: diffIndex += 1
+            while diffIndex < len(m) - 1 and r[0] > m[diffIndex][1]: diffIndex += 1
             
             #previous range was already past the maps so we can freely add next ranges unchanged
             if diffIndex == len(m): 
@@ -51,7 +51,7 @@ def findLowestLocation(seeds):
                     break
                 else:
                     #add new range, stays as is because it's not captured by a map
-                    newRanges.append([r[0], m[diffIndex][0]-1]) 
+                    newRanges.append([r[0], m[diffIndex][0] - 1]) 
                     #change the start for the part that the map captures
                     r[0] = m[diffIndex][0] 
                     
@@ -59,10 +59,10 @@ def findLowestLocation(seeds):
             while diffIndex < len(m) and r[1] >= m[diffIndex][1] and r[0] <= m[diffIndex][1]: 
                 #range is larger than multiple maps, but the maps are not adjacent so we add the part between the maps unchanged
                 if r[0] < m[diffIndex][0]: 
-                    newRanges.append([r[0], m[diffIndex][0]-1])
+                    newRanges.append([r[0], m[diffIndex][0] - 1])
                     r[0] = m[diffIndex][0]
                 #add the range to new with modifications
-                newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]]) 
+                newRanges.append([r[0] + m[diffIndex][2], m[diffIndex][1] + m[diffIndex][2]]) 
                 #set the start to just outside the current map for the next iteration
                 r[0] = m[diffIndex][1] + 1
                 diffIndex += 1
@@ -74,11 +74,11 @@ def findLowestLocation(seeds):
             else:
                 #fully within the map
                 if r[1] <= m[diffIndex][1]:
-                    newRanges.append([r[0]+m[diffIndex][2], r[1]+m[diffIndex][2]])
+                    newRanges.append([r[0] + m[diffIndex][2], r[1] + m[diffIndex][2]])
                 #right side sticking out of the map
                 else:
-                    newRanges.append([r[0]+m[diffIndex][2], m[diffIndex][1]+m[diffIndex][2]])
-                    newRanges.append([m[diffIndex][1]+1, r[1]])
+                    newRanges.append([r[0] + m[diffIndex][2], m[diffIndex][1] + m[diffIndex][2]])
+                    newRanges.append([m[diffIndex][1] + 1, r[1]])
            
         #sort the new ranges as we expect everything to be sorted
         newRanges = sorted(newRanges, key=lambda x: x[0])
@@ -86,4 +86,4 @@ def findLowestLocation(seeds):
     print(currentRanges[0][0])
 
 findLowestLocation(sorted([[seeds[i], seeds[i]] for i in range(0, len(seeds))], key=lambda x: x[0]))
-findLowestLocation(sorted([[seeds[i], seeds[i]+seeds[i+1]-1] for i in range(0, len(seeds), 2)], key=lambda x: x[0]))
+findLowestLocation(sorted([[seeds[i], seeds[i] + seeds[i + 1] - 1] for i in range(0, len(seeds), 2)], key=lambda x: x[0]))

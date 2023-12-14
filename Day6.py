@@ -2,7 +2,7 @@ import re
 
 with open("Input/Day 6.txt", "r") as f: inputString = f.read().splitlines()
 
-seconds, goals = re.findall("([0-9]+)",inputString[0]), re.findall("([0-9]+)",inputString[1])
+seconds, goals = re.findall("([0-9]+)", inputString[0]), re.findall("([0-9]+)", inputString[1])
 
 def findWays(seconds, goals):
     numberOfWays = 1

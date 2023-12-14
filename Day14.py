@@ -15,7 +15,7 @@ def tumbleMapped(rocks, direction):
         rocks = sorted(rocks, key=lambda x: (x[1] if direction[1] == -1 else -x[1]))
         
     for rock in rocks:
-        while (rock[0] > 0 if direction[0] == -1 else rock[0] < len(inputString[0])-1 if direction[0] != 0 else rock[1] > 0 if direction[1] == -1 else rock[1] < len(inputString)-1) and newBlockMap[rock[1] + direction[1]][rock[0] + direction[0]] != "#":
+        while (rock[0] > 0 if direction[0] == -1 else rock[0] < len(inputString[0]) - 1 if direction[0] != 0 else rock[1] > 0 if direction[1] == -1 else rock[1] < len(inputString) - 1) and newBlockMap[rock[1] + direction[1]][rock[0] + direction[0]] != "#":
             rock = (rock[0] + direction[0], rock[1] + direction[1])
         newRocks.append(rock)
         newBlockMap[rock[1]][rock[0]] = "#"
@@ -29,7 +29,7 @@ def partTwo(r):
     rockLayouts, rocks = [], r[:]
     while rocks not in rockLayouts:
         rockLayouts.append(rocks)
-        rocks = tumbleMapped(tumbleMapped(tumbleMapped(tumbleMapped(rocks,(0,-1)),(-1,0)),(0,1)),(1,0))
+        rocks = tumbleMapped(tumbleMapped(tumbleMapped(tumbleMapped(rocks, (0, -1)), (-1, 0)), (0, 1)), (1, 0))
 
     startOfCycle = rockLayouts.index(rocks)
     targetIndex = ((1000000000 - startOfCycle) % (len(rockLayouts) - startOfCycle)) + startOfCycle

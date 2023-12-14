@@ -6,8 +6,8 @@ def getMirrorRow(intList, targetDifferences):
     for i in range(1, len(intList)):
         #maximum amount of spaces we can look left and right is min(i, len(intList) - i). 
         #We sum all positions that are different between the left and right half of the window
-        if sum(sum(dx != dy for dx, dy in zip(x, y)) for x, y in zip(intList[i-min(i, len(intList) - i):i], 
-                                                                          intList[i:i+min(i, len(intList) - i)][::-1])) == targetDifferences: return i
+        if sum(sum(dx != dy for dx, dy in zip(x, y)) for x, y in zip(intList[i - min(i, len(intList) - i):i], 
+                                                                          intList[i: i + min(i, len(intList) - i)][::-1])) == targetDifferences: return i
     return 0
 
 def findMirrors(targetDifferences):  

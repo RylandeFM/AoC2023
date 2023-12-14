@@ -1,6 +1,6 @@
 with open("Input/Day 10.txt", "r") as f: inputString = f.read().splitlines()
 
-interestingPoints, translation = {}, {"|":[(0, -1), (0, 1)],"-":[(-1, 0), (1, 0)],"L":[(0, -1), (1, 0)],"J":[(0, -1), (-1, 0)],"F":[(0, 1), (1, 0)],"7":[(0, 1), (-1, 0)]}
+interestingPoints, translation = {}, {"|": [(0, -1), (0, 1)], "-": [(-1, 0), (1, 0)], "L": [(0, -1), (1, 0)], "J": [(0, -1), (-1, 0)], "F": [(0, 1), (1, 0)], "7": [(0, 1), (-1, 0)]}
 for y, line in enumerate(inputString):
     for x, c in enumerate(line):
         if c != ".": interestingPoints[(x, y)] = c

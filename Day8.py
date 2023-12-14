@@ -14,7 +14,7 @@ def partOne():
     print(step)
 
 def partTwo():
-    startNodes, stepsToEnd = [x for x in roadMap.keys() if x[2]=="A"], []
+    startNodes, stepsToEnd = [x for x in roadMap.keys() if x[2] == "A"], []
     for startNode in startNodes:
         currentNode, step = startNode, 0
         while currentNode[2] != "Z":

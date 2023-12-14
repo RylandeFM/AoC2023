@@ -11,7 +11,7 @@ def partOne():
 ''' 
    
 def partOne():
-    print(sum([int(x[0] + x[-1]) for x in [re.findall("[0-9]",line) for line in inputString]]))
+    print(sum([int(x[0] + x[-1]) for x in [re.findall("[0-9]", line) for line in inputString]]))
 
 ''' Initial attempt
 def partTwo():
@@ -44,7 +44,7 @@ def partTwo():
     print(sum)
     
 def findCalibration(pattern):
-    print(sum([int((x[0] if x[0].isnumeric() else replaces[x[0]]) + (x[-1] if x[-1].isnumeric() else replaces[x[-1]])) for x in [re.findall(pattern,line) for line in inputString]]))
+    print(sum([int((x[0] if x[0].isnumeric() else replaces[x[0]]) + (x[-1] if x[-1].isnumeric() else replaces[x[-1]])) for x in [re.findall(pattern, line) for line in inputString]]))
         
 #partOne()
 #partTwo()
