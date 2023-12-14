@@ -1,6 +1,6 @@
 with open("Input/Day 13.txt", "r") as f: inputStrings = f.read().split("\n\n")
 
-patterns = [[line for line in inputString.split("\n")] for inputString in inputStrings]
+patterns = [inputString.splitlines() for inputString in inputStrings]
 
 def getMirrorRow(intList, targetDifferences):
     for i in range(1, len(intList)):
