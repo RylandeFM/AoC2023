@@ -22,10 +22,9 @@ def tumbleMapped(rocks, direction):
     
     return newRocks
     
-def partOne():
-    print(sum([len(inputString) - r[1] for r in tumbleMapped(rocks, (0, -1))]))
+def tumbleRocks(r):
+    print(sum([len(inputString) - rock[1] for rock in tumbleMapped(r, (0, -1))]))
     
-def partTwo(r):
     rockLayouts, rocks = [], r[:]
     while rocks not in rockLayouts:
         rockLayouts.append(rocks)
@@ -35,5 +34,4 @@ def partTwo(r):
     targetIndex = ((1000000000 - startOfCycle) % (len(rockLayouts) - startOfCycle)) + startOfCycle
     print(sum([len(inputString) - r[1] for r in rockLayouts[targetIndex]]))
     
-partOne()
-partTwo(rocks)
+tumbleRocks(rocks)
