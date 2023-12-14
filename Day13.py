@@ -18,7 +18,7 @@ def findMirrors(targetDifferences):
     print((horizontal * 100) + vertical)
     '''
     print((sum([getMirrorRow([line for line in pattern], targetDifferences) for pattern in patterns]) * 100) + 
-          sum([getMirrorRow(["".join([pattern[i][j] for i in range(len(pattern))]) for j in range(len(pattern[0]))], targetDifferences) for pattern in patterns]))
+          sum([getMirrorRow([line for line in zip(*pattern)], targetDifferences) for pattern in patterns]))
         
 findMirrors(0)
 findMirrors(1)
