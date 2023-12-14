@@ -22,7 +22,7 @@ def camelCards(jokersApply, translationTable):
                 noJokers[0] += toAdd
                 cardProfile = "".join(map(str, noJokers))
         else:
-            cardProfile = "".join(map(str,sorted(occurrences.values(), reverse=True)))
+            cardProfile = "".join(map(str, sorted(occurrences.values(), reverse=True)))
         match cardProfile:
             case "5": newCard = "7" + newCard # five of a kind
             case "41": newCard = "6" + newCard # four of a kind
