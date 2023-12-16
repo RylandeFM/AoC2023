@@ -8,8 +8,9 @@ def energizeFloor(start):
     toVisit.append(start)
     while toVisit:
         current = toVisit.pop()
-        if current in visited: continue
-        if current[0] not in range(0, len(floorMap[0])) or current[1] not in range(0, len(floorMap)):
+        if current in visited: continue #if we already seen this, we're in a loop and we can stop following it
+        #if we're going out bounds, we can remove the exit point from the points to check as it will lead to the same entry point with the same energy
+        if current[0] not in range(0, len(floorMap[0])) or current[1] not in range(0, len(floorMap)): 
             toApply = directions[opposite[current[2]]]
             exits.add((current[0] + toApply[0], current[1] + toApply[1], opposite[current[2]]))
             continue
