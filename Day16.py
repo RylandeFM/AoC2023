@@ -1,6 +1,6 @@
 with open("Input/Day 16.txt", "r") as f: inputString = f.read().splitlines()
 
-floorMap, directions = [[c for c in line]for line in inputString], {"R": (1, 0), "L": (-1, 0), "U": (0, -1), "D": (0, 1)}, 
+floorMap, directions = [[c for c in line] for line in inputString], {"R": (1, 0), "L": (-1, 0), "U": (0, -1), "D": (0, 1)}
 opposite = {"R": "L", "L": "R", "U":"D", "D": "U"}
         
 def energizeFloor(start):
