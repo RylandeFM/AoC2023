@@ -1,4 +1,4 @@
-from collections import deque
+from heapq import heappush, heappop
 
 with open("Input/Day 17.txt", "r") as f: inputString = f.read().splitlines()
 
@@ -18,19 +18,19 @@ def giveStates(node, dist, minReps, maxReps):
             if i >= minReps - 1: yield ((newX, newY, t[2]), newDist)
 
 def getBestPath(minReps, maxReps):
-    toVisit, start, visited = deque(), (0, 0, "S"), {}
+    toVisit, start, visited = [], (0, 0, "S"), {}
     visited[start] = 0
-    toVisit.append((0, start))
+    heappush(toVisit, (0, start))
     
     while toVisit:
-        dist, current = toVisit.popleft()
+        dist, current = heappop(toVisit)
         
         if current in visited.keys() and dist > visited[current]: continue
         
         for newNode, nodeDist in giveStates(current, dist, minReps, maxReps):
             if (newNode in visited.keys() and nodeDist < visited[newNode]) or newNode not in visited.keys():
                 visited[newNode] = nodeDist
-                toVisit.append((nodeDist, newNode))
+                heappush(toVisit, (nodeDist, newNode))
 
     print(min([dist for (x, y, _), dist in visited.items() if x == len(inputString[0]) - 1 and y == len(inputString) - 1]))
     
