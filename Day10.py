@@ -33,7 +33,7 @@ def huntAnimal():
     withinLoop = 0    
 
     for x in range(min([x[0] for x in loopNodes]), max([x[0] for x in loopNodes]) + 1):
-        for y in range(min([x[0] for x in loopNodes]), max([x[1] for x in loopNodes]) + 1):
+        for y in range(min([x[1] for x in loopNodes]), max([x[1] for x in loopNodes]) + 1):
             if (x, y) not in loopNodes: 
                 leftWalls = len([dx for dx in range(0, x) if (dx, y) in loopNodes and interestingPoints[(dx, y)] in ["|", "L", "J"]])
                 if leftWalls > 0 and leftWalls % 2 == 1: withinLoop += 1
