@@ -7,7 +7,7 @@ instr, parts = inputString.split("\n\n")
 
 parsedInstr = {}
 for i in instr.splitlines():
-    parsedInstr[i[:i.find("{")]] = i[i.find("{")+1:-1].split(",")
+    parsedInstr[i[:i.find("{")]] = i[i.find("{") + 1: -1].split(",")
     
 def evaluateXmasRating(x, m, a, s, instr):
     for i in instr[:-1]:
@@ -20,7 +20,7 @@ def partOne():
 
     for part in parts.splitlines():
         partAttr = {}
-        for item in part[1:-1].split(","):
+        for item in part[1: -1].split(","):
             ch, n = item.split("=")
             partAttr[ch] = int(n)
         if evaluateXmasRating(partAttr['x'], partAttr['m'], partAttr['a'], partAttr['s'], parsedInstr["in"]) == "A": 
