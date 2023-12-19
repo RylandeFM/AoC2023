@@ -34,6 +34,7 @@ def countSolutions(bounds, name = "in"):
     if name == "R":
         return 0
     if name == "A":
+        #range is inclusive on both ends so + 1 to offset
         return reduce(mul, [high - low + 1 for low, high in bounds.values()])
     
     rules, fallback, total = parsedInstr[name][:-1], parsedInstr[name][-1], 0
